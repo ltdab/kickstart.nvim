@@ -1014,3 +1014,14 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+--
+-- This remaps the keybindings for switching to normal mode within :terminal
+vim.api.nvim_create_autocmd('TermOpen', {
+  pattern = '*',
+  callback = function()
+    -- Map Esc in terminal mode to exit to terminal-normal mode
+    vim.api.nvim_buf_set_keymap(0, 't', '<Esc>', [[<C-\><C-n>]], { noremap = true, silent = true })
+    -- Example: Map jj to exit terminal insert mode
+    vim.api.nvim_buf_set_keymap(0, 't', 'jj', [[<C-\><C-n>]], { noremap = true, silent = true })
+  end,
+})
