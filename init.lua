@@ -614,6 +614,11 @@ require('lazy').setup({
         -- clangd = {},
         -- gopls = {},
         pyright = {},
+        bashls = {
+          cmd = { 'bash-language-server', 'start' },
+          filetypes = { 'bash', 'sh', 'zsh' },
+        },
+
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -708,7 +713,6 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
-        -- Conform can also run multiple formatters sequentially
         python = { 'isort', 'black' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
@@ -970,3 +974,10 @@ vim.api.nvim_create_autocmd('TermOpen', {
 
 -- Keymap for neo-tree
 vim.keymap.set('n', '<leader>e', '<cmd>Neotree<CR>', { noremap = true, silent = true, desc = 'Toggle neo-tree' })
+
+vim.lsp.config['bashls'] = {
+  cmd = { 'bash-language-server', 'start' },
+  filetypes = { 'bash', 'zsh', 'sh', 'zshrc' },
+  root_markers = { '.git' },
+}
+vim.lsp.enable 'bashls'
