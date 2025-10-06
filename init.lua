@@ -725,6 +725,7 @@ require('lazy').setup({
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
         html = { 'prettier' },
         markdown = { 'prettier' },
+        yaml = { 'prettier' },
       },
     },
   },
